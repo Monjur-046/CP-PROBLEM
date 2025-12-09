@@ -1,9 +1,7 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
 int main()
 {
-
     int n;
     cin >> n;
 
@@ -13,19 +11,33 @@ int main()
     int x;
     cin >> x;
 
-    int l = 0, r = n - 1, ans = n;
+    
+    int l = 0, r = n - 1, first = -1;
     while (l <= r) {
-        int mid = (l+r)/2;
-        if (a[mid] >= x) {
-            ans = mid;
+        int mid = (l + r) / 2;
+        if (a[mid] == x) {
+            first = mid;
             r = mid - 1;
-        } else {
-            l = mid + 1;
-        }
+        } else if (a[mid] < x) l = mid + 1;
+        else r = mid - 1;
     }
 
-    if (ans == n) cout << -1 << endl;
-    else cout << ans << endl;
+    
+    l = 0; r = n - 1;
+    int last = -1;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+        if (a[mid] == x) {
+            last = mid;
+            l = mid + 1;
+        } else if (a[mid] < x) l = mid + 1;
+        else r = mid - 1;
+    }
+
+    cout << first << " " << last << endl;
 
     return 0;
 }
+
+
+
